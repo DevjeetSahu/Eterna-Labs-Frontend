@@ -71,7 +71,16 @@ export function TokenCard({ token }: { token: Token }) {
     <Dialog>
       <DialogTrigger asChild>
         <div className={cn("group p-3 sm:p-4 cursor-pointer hover:bg-muted/30 transition-colors duration-300 border-b border-border/50", priceChangeClass)}>
-          <div className="flex gap-3">
+          
+          {/* Hover buttons */}
+          <button type="button" className="absolute z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-150 text-muted-foreground hover:text-primary w-6 h-6 flex items-center justify-center rounded-md bg-card border border-border/50" style={{ top: '6px', left: '6px' }}>
+            <EyeOff className="h-3.5 w-3.5" />
+          </button>
+          <button type="button" className="absolute z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-150 text-muted-foreground hover:text-primary w-6 h-6 flex items-center justify-center rounded-md bg-card border border-border/50" style={{ top: '34px', left: '6px' }}>
+            <ChefHat className="h-3.5 w-3.5" />
+          </button>
+          
+          <div className="flex gap-3 relative">
             {/* Left side - Image */}
             <div className="flex flex-col items-center gap-1.5 flex-shrink-0">
                 <div className="relative w-[74px] h-[74px]">
@@ -152,7 +161,7 @@ export function TokenCard({ token }: { token: Token }) {
                     <div className="flex items-center gap-2 text-xs text-muted-foreground w-full">
                         <span>TXs {token.transactions.buys + token.transactions.sells}</span>
                         <TxBar buys={token.transactions.buys} sells={token.transactions.sells} />
-                        <Button size="sm" variant="ghost" className="h-auto px-2 py-1 text-xs">Buy</Button>
+                        <Button size="sm" variant="outline" className="h-auto px-2 py-1 text-xs opacity-0 group-hover:opacity-100 transition-opacity">Buy</Button>
                     </div>
                 </div>
             </div>
