@@ -37,6 +37,8 @@ export type Token = {
   bots: number;
   boxes: number;
   isPumpFun: boolean;
+  type: 'pump' | 'mayhem' | 'virtual-curve' | 'meteora';
+  network: 'sol' | 'bnb';
 };
 
 export type SortDirection = 'asc' | 'desc';

@@ -6,9 +6,15 @@ import { useMockPriceUpdates } from '@/hooks/use-mock-price-updates';
 import { TokenTableSkeleton } from '@/components/token-table/token-table-skeleton';
 import type { Token } from '@/lib/types';
 import { TokenList } from '@/components/token-table/token-list';
+import { PulseHeader } from '@/components/layout/pulse-header';
+import { SiteHeader } from '@/components/layout/site-header';
+import { SiteFooter } from '@/components/layout/site-footer';
+
+export type Network = 'sol' | 'bnb';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  const [network, setNetwork] = useState<Network>('sol');
 
   const allInitialTokens = [...newPairs, ...finalStretch, ...migrated];
   const updatedTokens = useMockPriceUpdates(allInitialTokens);
@@ -21,52 +27,68 @@ export default function Home() {
   }, []);
 
   const getUpdatedData = (sourceData: Token[]) => {
-      return sourceData.map(initialToken => 
+      const filteredByNetwork = sourceData.filter(t => t.network === network);
+      return filteredByNetwork.map(initialToken => 
         updatedTokens.find(updatedToken => updatedToken.id === initialToken.id) || initialToken
       );
   }
 
-  if (isLoading) {
-    return (
-        <div className="container relative py-8">
-            <section className="mb-8">
-                <h1 className="text-3xl font-bold">Pulse</h1>
-            </section>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                <TokenTableSkeleton />
-                <TokenTableSkeleton />
-                <TokenTableSkeleton />
-            </div>
-        </div>
-    );
-  }
-
   return (
-    <div className="container relative py-8">
-      <section className="mb-8">
-        <h1 className="text-3xl font-bold">Pulse</h1>
-      </section>
-      
-      <section className="grid w-full grid-cols-1 lg:grid-cols-3 gap-4">
-         <div className="rounded-lg border border-border bg-card overflow-hidden">
-            <div className="p-4 border-b border-border">
-                <h2 className="text-lg font-semibold">New Pairs</h2>
+    <div className="relative flex h-screen min-h-dvh flex-col bg-background overflow-hidden">
+      <SiteHeader network={network} setNetwork={setNetwork} />
+      <main className="flex-1 flex flex-col min-h-0">
+        <div className="container py-6 flex flex-col flex-1 min-h-0">
+          <PulseHeader network={network} setNetwork={setNetwork} />
+
+          {isLoading ? (
+            <div className="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-4 flex-1 min-h-0">
+              <div className="rounded-lg border border-border bg-card overflow-hidden">
+                <div className="p-4 border-b border-border">
+                  <h2 className="text-lg font-semibold">New Pairs</h2>
+                </div>
+                <TokenTableSkeleton />
+              </div>
+              <div className="rounded-lg border border-border bg-card overflow-hidden">
+                <div className="p-4 border-b border-border">
+                  <h2 className="text-lg font-semibold">Final Stretch</h2>
+                </div>
+                <TokenTableSkeleton />
+              </div>
+              <div className="rounded-lg border border-border bg-card overflow-hidden">
+                <div className="p-4 border-b border-border">
+                  <h2 className="text-lg font-semibold">Migrated</h2>
+                </div>
+                <TokenTableSkeleton />
+              </div>
             </div>
-            <TokenList data={getUpdatedData(newPairs)} />
-         </div>
-         <div className="rounded-lg border border-border bg-card overflow-hidden">
-            <div className="p-4 border-b border-border">
-                <h2 className="text-lg font-semibold">Final Stretch</h2>
-            </div>
-            <TokenList data={getUpdatedData(finalStretch)} />
-         </div>
-         <div className="rounded-lg border border-border bg-card overflow-hidden">
-            <div className="p-4 border-b border-border">
-                <h2 className="text-lg font-semibold">Migrated</h2>
-            </div>
-            <TokenList data={getUpdatedData(migrated)} />
-         </div>
-      </section>
+          ) : (
+            <section className="mt-4 grid w-full grid-cols-1 lg:grid-cols-3 gap-4 flex-1 min-h-0">
+              <div className="rounded-lg border border-border bg-card overflow-hidden flex flex-col">
+                <TokenList
+                  data={getUpdatedData(newPairs)}
+                  title="New Pairs"
+                  network={network}
+                />
+              </div>
+              <div className="rounded-lg border border-border bg-card overflow-hidden flex flex-col">
+                <TokenList
+                  data={getUpdatedData(finalStretch)}
+                  title="Final Stretch"
+                  network={network}
+                />
+              </div>
+              <div className="rounded-lg border border-border bg-card overflow-hidden flex flex-col">
+                <TokenList
+                  data={getUpdatedData(migrated)}
+                  title="Migrated"
+                  network={network}
+                />
+              </div>
+            </section>
+          )}
+        </div>
+      </main>
+      <SiteFooter />
     </div>
   );
 }

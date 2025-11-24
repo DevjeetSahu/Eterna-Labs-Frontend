@@ -70,3 +70,41 @@ export const PumpFunLogo = ({ className }: { className?: string }) => (
       ></path>
     </svg>
   );
+
+export const MayhemLogo = ({ className }: { className?: string }) => (
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+        <path d="M5 0L6.545 3.455L10 5L6.545 6.545L5 10L3.455 6.545L0 5L3.455 3.455L5 0Z" fill="#FF4500" />
+    </svg>
+);
+
+export const VirtualCurveLogo = ({ className }: { className?: string }) => (
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+        <path d="M5 0C2.23858 0 0 2.23858 0 5C0 7.76142 2.23858 10 5 10C7.76142 10 10 7.76142 10 5C10 2.23858 7.76142 0 5 0ZM5 8.5C3.067 8.5 1.5 6.933 1.5 5C1.5 3.067 3.067 1.5 5 1.5C6.933 1.5 8.5 3.067 8.5 5C8.5 6.933 6.933 8.5 5 8.5Z" fill="#4169E1" />
+    </svg>
+);
+
+export const MeteoraLogo = ({ className }: { className?: string }) => (
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+        <path d="M5 0L10 10L0 10L5 0Z" fill="#FFD700" />
+    </svg>
+);
+
+export const ChefHatOff = ({ className }: { className?: string }) => (
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M14.5 14.5L9.5 9.5"/>
+    <path d="M4 14a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2"/>
+    <path d="M6 14V6c0-1.55.8-2.9 2-3.46"/>
+    <path d="M16 6V4.14c.3-.1.61-.14.94-.14 2.21 0 4 1.79 4 4v2"/>
+    <path d="m 2 2 l 20 20"/>
+  </svg>
+);
+
+export const AtOff = ({ className }: { className?: string }) => (
+   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M10.25 10.25c-2.3-2.34-6.42-2.43-8.03-.59a4.5 4.5 0 0 0 6.01 6.01"/>
+    <path d="m14 14.5.76.76c2.3 2.34 6.42 2.43 8.03.59a4.5 4.5 0 0 0-6.01-6.01"/>
+    <path d="M12 12a4.5 4.5 0 0 0-4.24-4.24"/>
+    <path d="M12 12a4.5 4.5 0 0 1 4.24 4.24"/>
+    <line x1="2" x2="22" y1="2" y2="22"/>
+  </svg>
+);

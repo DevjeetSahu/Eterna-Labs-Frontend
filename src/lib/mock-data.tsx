@@ -1,7 +1,9 @@
 import type { Token } from './types';
 import React from 'react';
 
-const generateRandomToken = (name: string, symbol: string, logo: string, age: string, priceMultiplier: number, isPumpFun: boolean): Token => ({
+const tokenTypes: Token['type'][] = ['pump', 'mayhem', 'virtual-curve', 'meteora'];
+
+const generateRandomToken = (name: string, symbol: string, logo: string, age: string, priceMultiplier: number, isPumpFun: boolean, network: 'sol' | 'bnb'): Token => ({
   id: `${symbol}-${Math.random().toString(36).substring(7)}`,
   name,
   symbol,
@@ -37,27 +39,29 @@ const generateRandomToken = (name: string, symbol: string, logo: string, age: st
   bots: Math.floor(Math.random() * 20),
   boxes: Math.floor(Math.random() * 10),
   isPumpFun,
+  type: tokenTypes[Math.floor(Math.random() * tokenTypes.length)],
+  network,
 });
 
 export const newPairs: Token[] = [
-  generateRandomToken('Axiom', 'AXM', 'https://picsum.photos/seed/1/68/68', '5m', 1, true),
-  generateRandomToken('Zenith', 'ZTH', 'https://picsum.photos/seed/2/68/68', '12m', 1.2, true),
-  generateRandomToken('Nova', 'NVA', 'https://picsum.photos/seed/3/68/68', '25m', 0.8, false),
-  generateRandomToken('Orion', 'ORN', 'https://picsum.photos/seed/4/68/68', '45m', 2, true),
-  generateRandomToken('Pulse', 'PLS', 'https://picsum.photos/seed/5/68/68', '1h', 0.5, false),
-  generateRandomToken('Cosmo', 'CSM', 'https://picsum.photos/seed/6/68/68', '1h', 1.5, true),
-  generateRandomToken('Vertex', 'VTX', 'https://picsum.photos/seed/7/68/68', '2h', 0.9, false),
-  generateRandomToken('Stellar', 'XLM', 'https://picsum.photos/seed/8/68/68', '3h', 3, true),
+  generateRandomToken('Axiom', 'AXM', 'https://picsum.photos/seed/1/68/68', '5m', 1, true, 'sol'),
+  generateRandomToken('Zenith', 'ZTH', 'https://picsum.photos/seed/2/68/68', '12m', 1.2, true, 'bnb'),
+  generateRandomToken('Nova', 'NVA', 'https://picsum.photos/seed/3/68/68', '25m', 0.8, false, 'sol'),
+  generateRandomToken('Orion', 'ORN', 'https://picsum.photos/seed/4/68/68', '45m', 2, true, 'bnb'),
+  generateRandomToken('Pulse', 'PLS', 'https://picsum.photos/seed/5/68/68', '1h', 0.5, false, 'sol'),
+  generateRandomToken('Cosmo', 'CSM', 'https://picsum.photos/seed/6/68/68', '1h', 1.5, true, 'sol'),
+  generateRandomToken('Vertex', 'VTX', 'https://picsum.photos/seed/7/68/68', '2h', 0.9, false, 'bnb'),
+  generateRandomToken('Stellar', 'XLM', 'https://picsum.photos/seed/8/68/68', '3h', 3, true, 'sol'),
 ];
 
 export const finalStretch: Token[] = [
-  generateRandomToken('Apex', 'APX', 'https://picsum.photos/seed/9/68/68', '23h', 10, true),
-  generateRandomToken('Legacy', 'LGC', 'https://picsum.photos/seed/10/68/68', '1d', 15, false),
-  generateRandomToken('Momentum', 'MTM', 'https://picsum.photos/seed/11/68/68', '1d', 8, true),
-  generateRandomToken('Horizon', 'HZN', 'https://picsum.photos/seed/12/68/68', '2d', 12, false),
+  generateRandomToken('Apex', 'APX', 'https://picsum.photos/seed/9/68/68', '23h', 10, true, 'sol'),
+  generateRandomToken('Legacy', 'LGC', 'https://picsum.photos/seed/10/68/68', '1d', 15, false, 'bnb'),
+  generateRandomToken('Momentum', 'MTM', 'https://picsum.photos/seed/11/68/68', '1d', 8, true, 'sol'),
+  generateRandomToken('Horizon', 'HZN', 'https://picsum.photos/seed/12/68/68', '2d', 12, false, 'bnb'),
 ];
 
 export const migrated: Token[] = [
-  generateRandomToken('OldCoin', 'OC', 'https://picsum.photos/seed/13/68/68', '3d', 0.1, false),
-  generateRandomToken('Phoenix', 'PNX', 'https://picsum.photos/seed/14/68/68', '4d', 0.2, true),
+  generateRandomToken('OldCoin', 'OC', 'https://picsum.photos/seed/13/68/68', '3d', 0.1, false, 'sol'),
+  generateRandomToken('Phoenix', 'PNX', 'https://picsum.photos/seed/14/68/68', '4d', 0.2, true, 'bnb'),
 ];
