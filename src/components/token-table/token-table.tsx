@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { newPairs, finalStretch, migrated } from '@/lib/mock-data.tsx';
+import { newPairs, finalStretch, migrated } from '@/lib/mock-data';
 import { useMockPriceUpdates } from '@/hooks/use-mock-price-updates';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { DataTable } from './data-table';
